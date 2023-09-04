@@ -20,25 +20,53 @@ A new csv file, with the following columns
    * expected
    * actual
    * expected == actual?
-   * Note: imperfective verbs have a present tense conjugation; perfective verbs have future tense conjugation
 
-# Expected Conjugations
-* Note: You can see these steps applied step by step by running python3 get_expected_conjugation --(your verb here).
+# Conjugating Verbs (using most basic rules)
 
-Using the most basic conjugation rules, there are two types of verbs: ones that end in -ить/-еть or -ть (no и/е preceding ть).
+Past Tense
+- remove -ть ending, then add л, ла, ло, ли endings depending on subject
 
-The conjugated verb is formed by removing the ending to create the verb stem, and then adding the appropriate endings.
+Present + Imperative Tense
+- verbs fall into one of two categories
 
-The present tense endings are shown below:
+Group 1: Verbs that end in -ть (but not -ить/-еть)
+1. Remove -ть
+2. Add group 1 endings (see table below)
+
+Group 2: Verbs that end in -ить/-еть
+1. Remove -ить/-еть
+2. Add group 2 endings (see table below)
+
 |     | -ть | -ить/-еть |
 |-----|-----|-----------|
 | я   | ю   | у         |
 | ты  | ешь | ишь       |
-| он  | ет  | ит        |
+| он, она, оно  | ет  | ит        |
 | мы  | ем  | им        |
 | вы  | ете | ите       |
 | они | ют  | ят        |
+| ты command | й | и |
+| вы command | йте | ите |
 
-Reflexive verbs (infinitive ends in -ся) are conjugated similarly. The -ся is first removed, then the -ть, -ить/-еть is rеmoved to form the stem. Then the endings are added as in the above table before finally adding the reflexive ending (-сь for я, вы, она past, оно past, они past, ты command; -ся for ты, он, мы, они, он past, вы command)
+If a verb is reflexive, simply remove the -ся and conjugate like above. Then add the appropriate reflexive endings.
 
 See a longer explanation [here](https://www.russianforeveryone.com/Rufe/Lessons/Course1/Grammar/GramUnit5/GramUnit5_2.htm)
+
+TODO: add rules for participles and gerunds
+
+
+# Expected Conjugation Algorithm in Plain English
+* NOTE: You can see this algorithm applied step by step by running python3 conjugate.py with logging level set to DEBUG.
+
+1. Set the verb stem equal to the full infinitive
+2. Reflexive check; if stem ends in -ся, mark verb reflexive and remove the ending ся from the stem
+3. Irregular check; if stem does not end in -ть, mark verb as irregular stem; unable to conjugate, so return early
+4. Form past tense; add past tense endings to current stem (-л, -ла, -ло, -ли)
+5. Accented ending check; if current stem ends in an accent, update present / future endings so first letter of ending is accented
+6. Verb group check;
+   * if current stem ends in -и or -е, mark as group two verb and remove и/е from stem
+   * else, mark as group one verb
+7. Form present/future + imperative tense; add group one/two endings to current stem
+8. Reflexive additions; if verb is reflexive, add reflexive endings to all conjugated verb forms
+
+
