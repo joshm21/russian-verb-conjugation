@@ -5,7 +5,7 @@ Uses data from [OpenRussian.org](www.openrussian.org) and their [database](https
 
 # Steps
 1. Create actual_conjugations.csv (actual.py)
-    - download words, verbs, and word_forms csv tables from OpenRussian database
+    - download words, verbs, and word_forms csv tables from OpenRussian database (use form_type=ru_verb* for word_forms for smaller table)
     - combine these tables into one table with word_id, bare, accented, and all word forms
 2. Create expected_conjugations.csv (expected.py)
     - for each line in actual_conjugations.csv
