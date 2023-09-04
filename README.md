@@ -5,33 +5,26 @@ Uses data from [OpenRussian.org](www.openrussian.org) and their [database](https
 
 # Steps
 1. Create actual_conjugations.csv (actual.py)
-  - download words, verbs, and word_forms csv tables from OpenRussian database
-  - combine these tables into one table with word_id, bare, accented, and all word forms
+    - download words, verbs, and word_forms csv tables from OpenRussian database
+    - combine these tables into one table with word_id, bare, accented, and all word forms
 2. Create expected_conjugations.csv (expected.py)
-  - for each line in actual_conjugations.csv
-  - run conjugate.py
-  - save table with identical format of actual_conjugations.csv
+    - for each line in actual_conjugations.csv
+    - run conjugate.py
+    - save table with identical format of actual_conjugations.csv
 3. Use/create a diff tool to compare the files
 4. Classify unexpected conjugations into groups
-  - eg интерестовать - я интересую; рисовать - я рисую
-  - for each verb, ова changes to у in present tense
-  - 
+    - eg интерестовать - я интересую; рисовать - я рисую
+    - for each verb, ова changes to у in present tense
 
 # Conjugating Verbs (using most basic rules)
 
-Past Tense
-- remove -ть ending, then add л, ла, ло, ли endings depending on subject
+- Past Tense
+    - remove -ть ending, then add л, ла, ло, ли endings depending on subject
 
-Present + Imperative Tense
-- verbs fall into one of two categories
-
-Group 1: Verbs that end in -ть (but not -ить/-еть)
-1. Remove -ть
-2. Add group 1 endings (see table below)
-
-Group 2: Verbs that end in -ить/-еть
-1. Remove -ить/-еть
-2. Add group 2 endings (see table below)
+- Present + Imperative Tense
+    - verbs fall into one of two categories
+    - remove ending (-ть or -ить/-еть)
+    - add endings (see table below)
 
 |     | -ть | -ить/-еть |
 |-----|-----|-----------|
@@ -44,7 +37,8 @@ Group 2: Verbs that end in -ить/-еть
 | ты command | й | и |
 | вы command | йте | ите |
 
-If a verb is reflexive, simply remove the -ся and conjugate like above. Then add the appropriate reflexive endings.
+- Reflexive verbs
+    - Simply remove the -ся and conjugate like above. Then add the appropriate reflexive endings.
 
 See a longer explanation [here](https://www.russianforeveryone.com/Rufe/Lessons/Course1/Grammar/GramUnit5/GramUnit5_2.htm)
 
