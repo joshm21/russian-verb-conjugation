@@ -1,7 +1,7 @@
 # is-russian-verb-conjugation-irregular
-Script to check whether or not a Russian verb conjugates as expected.
+Conjugate Russian verbs. Compare expected to actual conjugation. Classify similarly conjugated verbs into groups.
 
-Uses data from [OpenRussian.org](www.openrussian.org) and their [database](https://app.togetherdb.com/db/fwoedz5fvtwvq03v/russian3/)
+Uses data from [OpenRussian.org](www.openrussian.org) and their [database](https://app.togetherdb.com/db/fwoedz5fvtwvq03v/russian3/).
 
 # Steps
 1. Create actual_conjugations.csv (actual.py)
