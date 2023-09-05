@@ -1,4 +1,4 @@
-# is-russian-verb-conjugation-irregular
+# russian-verb-forms
 Conjugate Russian verbs. Compare expected to actual conjugation. Classify similarly conjugated verbs into groups.
 
 Uses data from [OpenRussian.org](www.openrussian.org) and their [database](https://app.togetherdb.com/db/fwoedz5fvtwvq03v/russian3/).
