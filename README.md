@@ -33,8 +33,6 @@ TODO: add rules for participles and gerunds
 
 
 # Expected Conjugation Algorithm in Plain English
-* NOTE: You can see this algorithm applied step by step by running python3 conjugate.py with logging level set to DEBUG.
-
 1. Set the verb stem equal to the full infinitive
 2. Reflexive check; if stem ends in -ся, mark verb reflexive and remove the ending ся from the stem
 3. Irregular check; if stem does not end in -ть, mark verb as irregular stem; unable to conjugate, so return early
