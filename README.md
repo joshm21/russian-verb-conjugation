@@ -3,19 +3,6 @@ Conjugate Russian verbs. Compare expected to actual conjugation. Classify simila
 
 Uses data from [OpenRussian.org](www.openrussian.org) and their [database](https://app.togetherdb.com/db/fwoedz5fvtwvq03v/russian3/).
 
-# Steps
-1. Create actual_conjugations.csv (actual.py)
-    - download words, verbs, and word_forms csv tables from OpenRussian database (use form_type=ru_verb* for word_forms for smaller table)
-    - combine these tables into one table with word_id, bare, accented, and all word forms
-2. Create expected_conjugations.csv (expected.py)
-    - for each line in actual_conjugations.csv
-    - run conjugate.py
-    - save table with identical format of actual_conjugations.csv
-3. Use/create a diff tool to compare the files
-4. Classify unexpected conjugations into groups
-    - eg интерестовать - я интересую; рисовать - я рисую
-    - for each verb, ова changes to у in present tense
-
 # Conjugating Verbs (using most basic rules)
 
 - Past Tense
