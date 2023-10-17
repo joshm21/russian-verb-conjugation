@@ -1,26 +1,29 @@
 import pandas as pd
 
-def main():
-    verbs = pd.read_csv("russian3 - verbs.csv",
-                        usecols=["word_id"])
-    words = pd.read_csv("russian3 - words.csv",
-                        usecols=["id", "bare", "accented"])
-    forms = pd.read_csv("russian3 - words_forms.csv",
-                        usecols=["word_id", "form_type", "position", "form"])
+words = pd.read_csv("russian3 - words.csv")[["id", "accented", "rank", "type"]]
+forms = pd.read_csv("russian3 - words_forms.csv")[
+    ["word_id", "form_type", "position", "form"]
+]
 
-    forms = forms.loc[forms["form_type"].str.startswith("ru_verb")]
-    forms["form"] = forms["form"].astype("string")
-    forms = forms.fillna("").pivot_table(index="word_id",
-                                         columns="form_type",
-                                         values="form",
-                                         aggfunc=lambda x: "; ".join(x)).reset_index()
+verbs = words[words["type"] == "verb"]
 
-    result = pd.merge(verbs, words, how="left",
-                      left_on="word_id", right_on="id").drop('id', axis=1)
-    result = pd.merge(result, forms, how="left")
+merged = pd.merge(
+    left=verbs, right=forms, how="left", left_on="id", right_on="word_id"
+).drop(columns=["type", "word_id"])
 
-    result.to_csv("actual_conjugations.csv")
+merged["form"] = merged["form"].astype("str")
+combine_forms = (
+    merged.sort_values("position")
+    .groupby(["id", "accented", "rank", "form_type"], sort=False, as_index=False)[
+        "form"
+    ]
+    .agg("|".join)
+)
 
+pivot_form_type = combine_forms.pivot(
+    index=["id", "accented", "rank"], columns="form_type", values="form"
+).reset_index()
 
-if __name__ == "__main__":
-    main()
+print(pivot_form_type.info())
+print(pivot_form_type.head(50))
+pivot_form_type.to_csv("verb_table.csv")
